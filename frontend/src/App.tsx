@@ -27,9 +27,10 @@ function App() {
     localStorage.setItem('showEmailInput', String(showEmailInput));
   }, [showEmailInput]);
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, isPlaceholderData } = useQuery({
     queryKey: ['feedbacks', filters],
     queryFn: () => getFeedbacks(filters),
+    placeholderData: (prev) => prev,
   });
 
   const handleFiltersChange = useCallback((newFilters: FeedbackFilters) => {
@@ -133,7 +134,7 @@ function App() {
         <SearchBar filters={filters} onFiltersChange={handleFiltersChange} totalCount={total} />
 
         {/* Feedback List */}
-        {isLoading ? (
+        {(isLoading && !isPlaceholderData) ? (
           <div className="spinner-wrap">
             <div className="spinner" />
           </div>
@@ -150,7 +151,7 @@ function App() {
             <p>Click "New Feedback" to submit the first one — AI will classify it instantly.</p>
           </div>
         ) : (
-          <div className="feedback-grid">
+          <div className={`feedback-grid ${isLoading ? 'pulse' : ''}`}>
             {feedbacks.map((feedback) => (
               <FeedbackCard
                 key={feedback._id}

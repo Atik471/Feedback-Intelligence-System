@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import type { FeedbackFilters } from '../types/feedback';
 
 interface SearchBarProps {
@@ -10,11 +10,25 @@ interface SearchBarProps {
 export function SearchBar({ filters, onFiltersChange, totalCount }: SearchBarProps) {
     const [localSearch, setLocalSearch] = useState(filters.search || '');
 
-    const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const val = e.target.value;
-        setLocalSearch(val);
-        onFiltersChange({ ...filters, search: val });
-    }, [filters, onFiltersChange]);
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setLocalSearch(e.target.value);
+    };
+
+    // Debounce search update
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (localSearch !== (filters.search || '')) {
+                onFiltersChange({ ...filters, search: localSearch });
+            }
+        }, 300);
+
+        return () => clearTimeout(timer);
+    }, [localSearch, onFiltersChange, filters]);
+
+    // Update local state if filters cleared from parent
+    useEffect(() => {
+        setLocalSearch(filters.search || '');
+    }, [filters.search]);
 
     const handleFilterChange = useCallback(
         (key: keyof FeedbackFilters) => (e: React.ChangeEvent<HTMLSelectElement>) => {
