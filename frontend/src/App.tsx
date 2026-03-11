@@ -70,7 +70,7 @@ function App() {
               </div>
               <div>
                 <h1>Feedback Intelligence</h1>
-                <span>AI-powered feedback triage</span>
+                <span>AI-powered feedback analyst</span>
               </div>
             </div>
             <div className="header-actions">
