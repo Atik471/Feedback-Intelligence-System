@@ -39,8 +39,11 @@ Return a JSON object with these four fields only.
 let llmChain: ReturnType<typeof createChain> | null = null;
 
 function createChain() {
+    const modelName = 'gemini-2.5-flash';
+    console.log(`[LLM] Initializing with model: ${modelName}`);
+
     const model = new ChatGoogleGenerativeAI({
-        model: 'gemini-1.5-flash',
+        model: modelName,
         apiKey: process.env.GOOGLE_API_KEY!,
         temperature: 0,
     });
@@ -53,8 +56,10 @@ export async function analyzeFeedback(
     title: string,
     description: string
 ): Promise<FeedbackAnalysis> {
-    if (!process.env.GOOGLE_API_KEY || process.env.GOOGLE_API_KEY === 'your_gemini_api_key_here') {
-        console.warn('[LLM] GOOGLE_API_KEY not set — using default fallback values');
+    const apiKey = process.env.GOOGLE_API_KEY;
+
+    if (!apiKey || apiKey === 'your_gemini_api_key_here') {
+        console.warn('[LLM] GOOGLE_API_KEY not set or is placeholder — using default fallback values');
         return {
             category: 'General',
             priority: 'Medium',
@@ -71,8 +76,20 @@ export async function analyzeFeedback(
         const result = await llmChain.invoke({ title, description });
         console.log('[LLM] Analysis result:', result);
         return result;
-    } catch (error) {
-        console.error('[LLM] Analysis failed:', error);
+    } catch (error: any) {
+        console.error('[LLM] Analysis failed EXCEPTION:');
+        console.error('Status:', error?.status);
+        console.error('Message:', error?.message);
+
+        // Some errors are wrapped in a response object
+        if (error?.response) {
+            console.error('Response Data:', JSON.stringify(error.response.data, null, 2));
+        }
+
+        if (error?.errorDetails) {
+            console.error('Details:', JSON.stringify(error.errorDetails, null, 2));
+        }
+
         // Return safe defaults on failure
         return {
             category: 'General',
