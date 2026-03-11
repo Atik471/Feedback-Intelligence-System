@@ -53,8 +53,12 @@ export async function getFeedbacks(req: Request, res: Response): Promise<void> {
         const query: any = {};
 
         if (search) {
-            // Use text index for efficient search across title, description, and submittedBy
-            query.$text = { $search: search as string };
+            const searchRegex = new RegExp(search as string, 'i');
+            query.$or = [
+                { title: searchRegex },
+                { description: searchRegex },
+                { submittedBy: searchRegex },
+            ];
         }
 
         if (category) query.category = category;
