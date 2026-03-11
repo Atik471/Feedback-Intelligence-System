@@ -29,13 +29,11 @@ export async function createFeedback(req: Request, res: Response): Promise<void>
             feedback.llmProcessed = true;
             await feedback.save();
 
-            // Send email notification (non-blocking)
-            sendFeedbackNotification(feedback, teamEmail).catch((err) =>
-                console.error('[Email] Failed to send notification:', err)
-            );
+            // Send email notification (Wait for it on Vercel to prevent suspension)
+            await sendFeedbackNotification(feedback, teamEmail);
         } catch (llmError) {
-            console.error('[Controller] LLM enrichment failed:', llmError);
-            // Feedback is still saved — just without LLM enrichment
+            console.error('[Controller] AI or Email processing failed:', llmError);
+            // Feedback is still saved — just without enrichment/notification
         }
 
         res.status(201).json(feedback);
