@@ -14,15 +14,18 @@
   "dependencies": {
     "@langchain/core": "^1.1.31",
     "@langchain/google-genai": "^2.1.24",
+    "compression": "^1.8.1",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
+    "helmet": "^8.1.0",
     "langchain": "^1.2.30",
     "mongoose": "^9.2.4",
     "nodemailer": "^8.0.2",
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@types/compression": "^1.8.1",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^25.4.0",
