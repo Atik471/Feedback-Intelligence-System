@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
-import { BrainCircuit, Plus, Mail, MessageSquare, AlertTriangle } from 'lucide-react';
+import { Cpu, Plus, Mail, MessageSquare, AlertTriangle } from 'lucide-react';
 import { getFeedbacks } from './services/api';
 import type { Feedback, FeedbackFilters } from './types/feedback';
 import { FeedbackCard } from './components/FeedbackCard';
@@ -66,7 +66,7 @@ function App() {
           <div className="header-inner">
             <div className="header-logo">
               <div className="header-logo-icon">
-                <BrainCircuit size={22} color="#fff" />
+                <Cpu size={22} color="#fff" />
               </div>
               <div>
                 <h1>Feedback Intelligence</h1>
