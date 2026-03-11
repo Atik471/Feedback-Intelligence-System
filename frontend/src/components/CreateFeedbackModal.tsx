@@ -24,8 +24,8 @@ export function CreateFeedbackModal({ onClose, teamEmail }: CreateFeedbackModalP
             queryClient.invalidateQueries({ queryKey: ['feedbacks'] });
 
             const msg = teamEmail
-                ? `Feedback submitted! AI triage complete & email sent to ${teamEmail} ✨`
-                : 'Feedback submitted! AI analysis complete ✨';
+                ? `Feedback analysis complete! Email sent to ${teamEmail}`
+                : 'Feedback analysis complete!';
             toast.success(msg);
         },
         onError: () => {
