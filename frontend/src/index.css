@@ -915,6 +915,13 @@ body {
   margin-top: 2px;
 }
 
+.email-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 /* ─── Loading Pulse ─────────────────────────────────────────── */
 .pulse {
   animation: pulse 1.5s ease-in-out infinite;

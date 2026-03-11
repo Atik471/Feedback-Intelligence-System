@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Toaster } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 import { Cpu, Plus, Mail, MessageSquare, AlertTriangle } from 'lucide-react';
 import { getFeedbacks } from './services/api';
 import type { Feedback, FeedbackFilters } from './types/feedback';
@@ -95,21 +95,37 @@ function App() {
               <Mail size={24} />
             </div>
             <div className="email-banner-text">
-              <h3>Enable Email Notifications (Optional)</h3>
-              <p>Enter a team email to receive notifications when feedback is submitted.</p>
+              <h3>Enable Email Notifications</h3>
+              <p>Team email to receive AI-routed feedback alerts.</p>
             </div>
-            <input
-              className="form-input"
-              style={{ maxWidth: '260px' }}
-              type="email"
-              placeholder="team@company.com"
-              value={teamEmail}
-              onChange={(e) => setTeamEmail(e.target.value)}
-              id="team-email-input"
-            />
-            <button className="btn btn-ghost btn-sm" onClick={() => setShowEmailInput(false)} id="dismiss-email-banner">
-              Dismiss
-            </button>
+            <div className="email-banner-actions">
+              <input
+                className="form-input"
+                style={{ width: '240px' }}
+                type="email"
+                placeholder="team@company.com"
+                value={teamEmail}
+                onChange={(e) => setTeamEmail(e.target.value)}
+                id="team-email-input"
+              />
+              <button
+                className="btn btn-primary btn-sm"
+                onClick={() => {
+                  toast.success(`Notifications enabled for ${teamEmail}`);
+                  setShowEmailInput(false);
+                }}
+                disabled={!teamEmail.includes('@')}
+              >
+                Save
+              </button>
+              <button
+                className="btn btn-ghost btn-sm"
+                onClick={() => setShowEmailInput(false)}
+                id="dismiss-email-banner"
+              >
+                Dismiss
+              </button>
+            </div>
           </div>
         )}
 
