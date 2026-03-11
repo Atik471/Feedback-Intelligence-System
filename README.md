@@ -1,8 +1,8 @@
-# 🧠 Feedback Intelligence System
+# Feedback Intelligence System
 
 A full-stack TypeScript application for intelligent feedback management. Uses **LangChain.js + Google Gemini 2.5 Flash** to automatically extract category, priority, sentiment, and team routing from user feedback.
 
-## ✨ Features
+## Features
 
 - **AI-Powered Triage** — Gemini 2.5 Flash auto-classifies every feedback submission.
 - **Smart Search & Filters** — Real-time partial matching for seamless discovery.
@@ -10,7 +10,7 @@ A full-stack TypeScript application for intelligent feedback management. Uses **
 - **Email Notifications** — Automated rich HTML alerts routed to relevant teams.
 - **Status Management** — Full lifecycle tracking from Open to Resolved.
 
-## 🛠 Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -20,7 +20,7 @@ A full-stack TypeScript application for intelligent feedback management. Uses **
 | **LLM** | LangChain.js + Google Gemini 2.5 Flash |
 | **Email** | Nodemailer + SMTP |
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js 18+
@@ -29,7 +29,7 @@ A full-stack TypeScript application for intelligent feedback management. Uses **
 
 ---
 
-## ☁️ Deployment (Vercel)
+## Deployment (Vercel)
 
 The system is optimized for one-click deployment on **Vercel**.
 
@@ -51,7 +51,7 @@ The system is optimized for one-click deployment on **Vercel**.
 
 ---
 
-## ⚙️ Environment Variables Summary
+## Environment Variables Summary
 
 ### `/backend`
 - `MONGODB_URI`: MongoDB connection string.
