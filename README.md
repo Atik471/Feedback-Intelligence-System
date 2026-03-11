@@ -11,6 +11,15 @@ A full-stack TypeScript application for intelligent feedback management. Uses **
 - **Status Management** — Update feedback status (Open → In Progress → Resolved)
 - **Premium Dark UI** — Glassmorphism design with smooth animations
 
+## 🧠 How it Works
+
+1. **Submission**: User submits feedback through the React frontend.
+2. **Persistence**: The Backend immediately saves the feedback to MongoDB.
+3. **AI Enrichment**: The system pipes the feedback into **LangChain + Gemini 1.5 Flash**.
+4. **Classification**: Gemini extracts Category, Priority, Sentiment, and a targeted Team.
+5. **Notification**: If configured, it triggers a rich HTML email to the relevant team.
+6. **Real-time Sync**: The UI highlights the AI analysis results instantly to the user.
+
 ## 🛠 Tech Stack
 
 | Layer | Technology |
