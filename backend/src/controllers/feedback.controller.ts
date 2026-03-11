@@ -53,12 +53,8 @@ export async function getFeedbacks(req: Request, res: Response): Promise<void> {
         const query: any = {};
 
         if (search) {
-            // Case-insensitive search across title, description, submittedBy
-            query.$or = [
-                { title: { $regex: search, $options: 'i' } },
-                { description: { $regex: search, $options: 'i' } },
-                { submittedBy: { $regex: search, $options: 'i' } },
-            ];
+            // Use text index for efficient search across title, description, and submittedBy
+            query.$text = { $search: search as string };
         }
 
         if (category) query.category = category;
