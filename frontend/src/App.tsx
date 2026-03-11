@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
 import { getFeedbacks } from './services/api';
@@ -12,8 +12,20 @@ function App() {
   const [filters, setFilters] = useState<FeedbackFilters>({});
   const [showCreate, setShowCreate] = useState(false);
   const [selectedFeedback, setSelectedFeedback] = useState<Feedback | null>(null);
-  const [teamEmail, setTeamEmail] = useState('');
-  const [showEmailInput, setShowEmailInput] = useState(true);
+  const [teamEmail, setTeamEmail] = useState(() => {
+    return localStorage.getItem('teamEmail') || '';
+  });
+  const [showEmailInput, setShowEmailInput] = useState(() => {
+    return localStorage.getItem('showEmailInput') !== 'false';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('teamEmail', teamEmail);
+  }, [teamEmail]);
+
+  useEffect(() => {
+    localStorage.setItem('showEmailInput', String(showEmailInput));
+  }, [showEmailInput]);
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['feedbacks', filters],
