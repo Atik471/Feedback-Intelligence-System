@@ -57,11 +57,11 @@ The system is optimized for one-click deployment on **Vercel**.
 - `MONGODB_URI`: MongoDB connection string.
 - `GOOGLE_API_KEY`: Gemini API key (**Required**).
 - `EMAIL_ENABLED`: `true` (to enable notifications).
-- `SMTP_HOST`: `smtp.resend.com`
-- `SMTP_PORT`: `465`
-- `SMTP_USER`: `resend`
-- `SMTP_PASS`: Your Resend API Key (`re_...`)
-- `FROM_EMAIL`: A verified domain email or `onboarding@resend.dev`.
+- `SMTP_HOST`: `smtp.hostinger.com` (or `smtp.gmail.com`)
+- `SMTP_PORT`: `465` (SSL)
+- `SMTP_USER`: Your email address.
+- `SMTP_PASS`: Your email password (or App Password for Gmail).
+- `FROM_EMAIL`: Must be the same as `SMTP_USER`.
 
 ### `/frontend`
 - `VITE_API_URL`: Backend API base URL.
