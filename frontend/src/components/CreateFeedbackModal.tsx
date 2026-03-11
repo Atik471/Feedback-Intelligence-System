@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { PenLine, Sparkles, Bot, Zap, X } from 'lucide-react';
 import { createFeedback } from '../services/api';
 import type { Feedback } from '../types/feedback';
 import { CategoryBadge, PriorityBadge, SentimentBadge, TeamBadge } from './Badge';
@@ -45,11 +46,18 @@ export function CreateFeedbackModal({ onClose, teamEmail }: CreateFeedbackModalP
         <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
             <div className="modal">
                 <div className="modal-header">
-                    <div>
-                        <h2>✍️ New Feedback</h2>
-                        <p>Describe your feedback — AI will auto-classify it</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div className="modal-header-icon">
+                            <PenLine size={20} />
+                        </div>
+                        <div>
+                            <h2>New Feedback</h2>
+                            <p>Describe your feedback — AI will auto-classify it</p>
+                        </div>
                     </div>
-                    <button className="modal-close" onClick={onClose} id="close-create-modal">✕</button>
+                    <button className="modal-close" onClick={onClose} id="close-create-modal">
+                        <X size={18} />
+                    </button>
                 </div>
 
                 <form onSubmit={handleSubmit}>
@@ -109,7 +117,7 @@ export function CreateFeedbackModal({ onClose, teamEmail }: CreateFeedbackModalP
 
                                 <div className="ai-result">
                                     <div className="ai-result-header">
-                                        <span>🤖</span> AI Analysis Results
+                                        <Bot size={16} /> AI Analysis Results
                                     </div>
                                     <div className="ai-result-grid">
                                         <div className="ai-result-item">
@@ -147,10 +155,12 @@ export function CreateFeedbackModal({ onClose, teamEmail }: CreateFeedbackModalP
                             >
                                 {mutation.isPending ? (
                                     <>
-                                        <span className="pulse">⚡</span> Analyzing…
+                                        <Zap size={18} className="pulse" /> Analyzing…
                                     </>
                                 ) : (
-                                    <>✨ Submit & Analyze</>
+                                    <>
+                                        <Sparkles size={18} /> Submit & Analyze
+                                    </>
                                 )}
                             </button>
                         )}

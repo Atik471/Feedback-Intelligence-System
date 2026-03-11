@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { Bot, X } from 'lucide-react';
 import type { Feedback } from '../types/feedback';
 import { CategoryBadge, PriorityBadge, SentimentBadge, TeamBadge, StatusBadge } from './Badge';
 import { updateFeedbackStatus } from '../services/api';
@@ -52,14 +53,16 @@ export function FeedbackDetailModal({ feedback, onClose }: FeedbackDetailModalPr
                         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '8px' }}>
                             <StatusBadge feedback={{ ...feedback, status: selectedStatus }} />
                             {feedback.llmProcessed && (
-                                <span className="badge" style={{ background: 'rgba(99, 102, 241, 0.1)', color: '#818cf8', border: '1px solid rgba(99, 102, 241, 0.2)' }}>
-                                    🤖 AI Analyzed
+                                <span className="badge" style={{ background: 'rgba(99, 102, 241, 0.1)', color: '#818cf8', border: '1px solid rgba(99, 102, 241, 0.2)', gap: '6px' }}>
+                                    <Bot size={12} /> AI Analyzed
                                 </span>
                             )}
                         </div>
                         <h2 style={{ fontSize: '18px' }}>{feedback.title}</h2>
                     </div>
-                    <button className="modal-close" onClick={onClose} id="close-detail-modal">✕</button>
+                    <button className="modal-close" onClick={onClose} id="close-detail-modal">
+                        <X size={18} />
+                    </button>
                 </div>
 
                 {/* Description */}
@@ -70,7 +73,9 @@ export function FeedbackDetailModal({ feedback, onClose }: FeedbackDetailModalPr
 
                 {/* AI Classification */}
                 <div className="detail-section">
-                    <p className="form-label" style={{ marginBottom: '12px' }}>🤖 AI Classification</p>
+                    <p className="form-label" style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <Bot size={16} /> AI Classification
+                    </p>
                     <div className="detail-meta-grid">
                         <div className="detail-meta-item">
                             <div className="label">Category</div>

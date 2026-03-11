@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
+import { BrainCircuit, Plus, Mail, MessageSquare, AlertTriangle } from 'lucide-react';
 import { getFeedbacks } from './services/api';
 import type { Feedback, FeedbackFilters } from './types/feedback';
 import { FeedbackCard } from './components/FeedbackCard';
@@ -64,7 +65,9 @@ function App() {
         <div className="container">
           <div className="header-inner">
             <div className="header-logo">
-              <div className="header-logo-icon">🧠</div>
+              <div className="header-logo-icon">
+                <BrainCircuit size={22} color="#fff" />
+              </div>
               <div>
                 <h1>Feedback Intelligence</h1>
                 <span>AI-powered feedback triage</span>
@@ -76,7 +79,7 @@ function App() {
                 onClick={() => setShowCreate(true)}
                 id="new-feedback-btn"
               >
-                <span>+</span> New Feedback
+                <Plus size={18} /> New Feedback
               </button>
             </div>
           </div>
@@ -88,7 +91,9 @@ function App() {
         {/* Email notification banner */}
         {showEmailInput && (
           <div className="email-banner">
-            <span style={{ fontSize: '22px' }}>📧</span>
+            <div className="email-banner-icon">
+              <Mail size={24} />
+            </div>
             <div className="email-banner-text">
               <h3>Enable Email Notifications (Optional)</h3>
               <p>Enter a team email to receive notifications when feedback is submitted.</p>
@@ -140,13 +145,17 @@ function App() {
           </div>
         ) : isError ? (
           <div className="empty-state">
-            <div className="empty-state-icon">⚠️</div>
+            <div className="empty-state-icon">
+              <AlertTriangle size={48} />
+            </div>
             <h3>Failed to load feedbacks</h3>
             <p>Make sure the backend server is running on port 5000.</p>
           </div>
         ) : feedbacks.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-state-icon">💬</div>
+            <div className="empty-state-icon">
+              <MessageSquare size={48} />
+            </div>
             <h3>No feedbacks yet</h3>
             <p>Click "New Feedback" to submit the first one — AI will classify it instantly.</p>
           </div>

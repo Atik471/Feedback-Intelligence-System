@@ -683,8 +683,20 @@ body {
 .modal-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding: 24px 28px 0;
+}
+
+.modal-header-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
 }
 
 .modal-header h2 {
@@ -869,6 +881,17 @@ body {
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
+}
+
+.email-banner-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(99, 102, 241, 0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-hover);
 }
 
 .email-banner-text {
