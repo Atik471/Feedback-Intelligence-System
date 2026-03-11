@@ -66,7 +66,7 @@ function App() {
           <div className="header-inner">
             <div className="header-logo">
               <div className="header-logo-icon">
-                <Cpu size={22} color="#fff" />
+                <Cpu size={22} color="var(--accent)" />
               </div>
               <div>
                 <h1>Feedback Intelligence</h1>
