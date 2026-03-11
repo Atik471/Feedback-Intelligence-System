@@ -398,7 +398,7 @@ body {
 }
 
 .filter-select {
-  padding: 8px 12px;
+  padding: 8px 32px 8px 12px;
   background: var(--bg-tertiary);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -930,7 +930,7 @@ body {
 
 /* ─── Status Select ─────────────────────────────────────────── */
 .status-select {
-  padding: 6px 10px;
+  padding: 6px 28px 6px 10px;
   background: var(--bg-glass);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -938,6 +938,7 @@ body {
   font-family: inherit;
   font-size: 12px;
   cursor: pointer;
+  appearance: auto;
 }
 
 /* ─── Responsive ─────────────────────────────────────────────── */
