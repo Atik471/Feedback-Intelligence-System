@@ -61,6 +61,7 @@ The system is optimized for one-click deployment on **Vercel**.
 - `SMTP_PORT`: `465`
 - `SMTP_USER`: `resend`
 - `SMTP_PASS`: Your Resend API Key (`re_...`)
+- `FROM_EMAIL`: A verified domain email or `onboarding@resend.dev`.
 
 ### `/frontend`
 - `VITE_API_URL`: Backend API base URL.

@@ -22,7 +22,11 @@ export function CreateFeedbackModal({ onClose, teamEmail }: CreateFeedbackModalP
         onSuccess: (data) => {
             setCreatedFeedback(data);
             queryClient.invalidateQueries({ queryKey: ['feedbacks'] });
-            toast.success('Feedback submitted! AI analysis complete ✨');
+
+            const msg = teamEmail
+                ? `Feedback submitted! AI triage complete & email sent to ${teamEmail} ✨`
+                : 'Feedback submitted! AI analysis complete ✨';
+            toast.success(msg);
         },
         onError: () => {
             toast.error('Failed to submit feedback. Please try again.');

@@ -48,8 +48,10 @@ export async function sendFeedbackNotification(
 
     const transport = createTransport();
 
+    const fromEmail = process.env.FROM_EMAIL || 'onboarding@resend.dev';
+
     await transport.sendMail({
-        from: `"Feedback Intelligence" <${process.env.SMTP_USER}>`,
+        from: `"Feedback Intelligence" <${fromEmail}>`,
         to: recipient,
         subject: `[${priorityEmoji[feedback.priority]} ${feedback.priority}] New ${feedback.category} Feedback — ${feedback.title}`,
         html: `
