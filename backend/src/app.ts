@@ -1,8 +1,15 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import feedbackRoutes from './routes/feedback.routes';
+import { connectDB } from './services/db.service';
+
+// Connect to database (for Vercel compatibility)
+connectDB().catch(err => console.error('Immediate DB connection failed:', err));
 
 const app = express();
 

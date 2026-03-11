@@ -20,7 +20,7 @@ export function SearchBar({ filters, onFiltersChange, totalCount }: SearchBarPro
             if (localSearch !== (filters.search || '')) {
                 onFiltersChange({ ...filters, search: localSearch });
             }
-        }, 300);
+        }, 150);
 
         return () => clearTimeout(timer);
     }, [localSearch, onFiltersChange, filters]);
